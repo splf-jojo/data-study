@@ -1,103 +1,79 @@
-import Image from "next/image";
+// app/page.tsx
+import Header from "@/components/Header";
+import CodeBlock from "@/components/CodeBlock";
+import ExplainRow from "@/components/ExplainRow";
+import GridHW from "@/components/illustrations/GridHW";
+import PaddingStride from "@/components/illustrations/PaddingStride";
+import ToMatrix from "@/components/illustrations/ToMatrix";
+import { IM2COL_FULL, STEP1, STEP2, STEP3 } from "@/lib/code/im2col";
 
-export default function Home() {
+export default function Page() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <>
+      <Header />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+      <main>
+        {/* HERO */}
+        <section className="max-w-[1100px] mx-auto px-4 pt-10">
+          <div className="rounded-2xl border border-slate-200 bg-white shadow-sm p-4">
+            <div className="flex items-center justify-between mb-3">
+              <h2 className="m-0 text-lg font-bold tracking-tight">
+                Функция <code className="font-[var(--font-fira)]">im2col</code>{" "}
+                (Python)
+              </h2>
+            </div>
+
+            <CodeBlock
+              title="Python"
+              language="python"
+              code={IM2COL_FULL}
+              expandable
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
+
+            <p className="text-sm text-slate-500 mt-2">
+              Подсветка — VSCode Light+ (Prism). Шрифт кода — Fira Code.
+            </p>
+          </div>
+        </section>
+
+        {/* ПОЯСНЕНИЯ */}
+        <section
+          id="explain"
+          className="max-w-[1100px] mx-auto px-4 py-8 space-y-7"
+        >
+          <div className="h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
+
+          <ExplainRow
+            caption="Шаг 1 — Параметры и размеры выхода"
+            code={STEP1}
+            right={<GridHW />}
+          />
+
+          <div className="h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
+
+          <ExplainRow
+            caption="Шаг 2 — Паддинг и буфер cols"
+            code={STEP2}
+            right={<PaddingStride />}
+          />
+
+          <div className="h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
+
+          <ExplainRow
+            caption="Шаг 3 — Из тензора в матрицу для GEMM"
+            code={STEP3}
+            right={<ToMatrix />}
+          />
+
+          <div className="h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
+        </section>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+
+      <footer className="border-t border-slate-200 mt-6">
+        <div className="max-w-[1100px] mx-auto px-4 py-6 text-center text-sm text-slate-500">
+          Сделано с любовью к понятному коду · Fira Code · Prism VSCode Light+
+        </div>
       </footer>
-    </div>
+    </>
   );
 }
