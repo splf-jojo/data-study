@@ -36,6 +36,7 @@ export default function TOC() {
   useEffect(() => {
     if (!isLarge) return;
 
+
     const elements = Array.from(
       document.querySelectorAll('main h2, main h3')
     ) as HTMLElement[];
@@ -69,6 +70,7 @@ export default function TOC() {
 
   return (
     <aside className="fixed top-32 right-8 w-48 text-sm">
+
       <div className="mb-2 text-xs text-slate-500">On this page</div>
       <ul className="relative border-s border-slate-200 ps-4 space-y-2">
         {headings.map((h) => (
@@ -81,6 +83,7 @@ export default function TOC() {
             </a>
             {active === h.id && (
               <span className="absolute -left-4 top-1/2 h-3/4 w-px -translate-y-1/2 bg-slate-700" />
+
             )}
           </li>
         ))}
