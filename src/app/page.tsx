@@ -11,8 +11,8 @@ export default function Page() {
   return (
     <>
       <Header />
-      <div className="lg:flex lg:items-start lg:gap-8 lg:px-8">
-        <main className="flex-1">
+      <div className="flex justify-center relative lg:px-8">
+        <main className="max-w-[1100px] w-full px-4">
           {/* HERO */}
           <section className="max-w-[1100px] mx-auto lg:mx-0 px-4 pt-10">
             <div className="rounded-2xl border border-slate-200 bg-white shadow-sm p-4">
@@ -97,7 +97,9 @@ export default function Page() {
             />
           </section>
         </main>
-        <TOC />
+        <div className="hidden lg:block sticky top-32 w-48 shrink-0 ml-8">
+          <TOC />
+        </div>
       </div>
     </>
   );

@@ -67,7 +67,7 @@ export default function TOC() {
               {h.text}
             </a>
             {active === h.id && (
-              <span className="absolute -left-4 top-1/2 h-3/4 w-px -translate-y-1/2 bg-slate-700" />
+              <span className="absolute [left:calc(-1rem-1px)] top-1/2 h-3/4 w-px -translate-y-1/2 bg-slate-700" />
             )}
           </li>
         ))}
