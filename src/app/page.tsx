@@ -3,6 +3,7 @@ import Header from "@/components/Header";
 import CodeBlock from "@/components/CodeBlock";
 import ExplainRow from "@/components/ExplainRow";
 import LoopVideo from "@/components/illustrations/LoopVideo";
+import TOC from "@/components/TOC";
 
 import { IM2COL_FULL, STEP4, STEP1, STEP2, STEP3 } from "@/lib/code/im2col";
 
@@ -10,6 +11,7 @@ export default function Page() {
   return (
     <>
       <Header />
+      <TOC />
 
       <main>
         {/* HERO */}
