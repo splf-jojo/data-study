@@ -3,6 +3,7 @@ import Header from "@/components/Header";
 import CodeBlock from "@/components/CodeBlock";
 import ExplainRow from "@/components/ExplainRow";
 import LoopVideo from "@/components/illustrations/LoopVideo";
+import TOC from "@/components/TOC";
 
 import { IM2COL_FULL, STEP4, STEP1, STEP2, STEP3 } from "@/lib/code/im2col";
 
@@ -10,10 +11,10 @@ export default function Page() {
   return (
     <>
       <Header />
-
-      <main>
-        {/* HERO */}
-        <section className="max-w-[1100px] mx-auto px-4 pt-10">
+      <div className="lg:flex lg:items-start lg:gap-8 lg:px-8">
+        <main className="flex-1">
+          {/* HERO */}
+          <section className="max-w-[1100px] mx-auto lg:mx-0 px-4 pt-10">
           <div className="rounded-2xl border border-slate-200 bg-white shadow-sm p-4">
             <div className="flex items-center justify-between mb-3">
               <h2 className="m-0 text-lg font-bold tracking-tight">
@@ -31,11 +32,11 @@ export default function Page() {
           </div>
         </section>
 
-        {/* ПОЯСНЕНИЯ */}
-        <section
-          id="explain"
-          className="max-w-[1300px] mx-auto px-4 py-8 space-y-12"
-        >
+          {/* ПОЯСНЕНИЯ */}
+          <section
+            id="explain"
+            className="max-w-[1300px] mx-auto lg:mx-0 px-4 py-8 space-y-12"
+          >
           <div className="h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
 
           <ExplainRow
@@ -93,8 +94,10 @@ export default function Page() {
               />
             }
           />
-        </section>
-      </main>
+          </section>
+        </main>
+        <TOC />
+      </div>
     </>
   );
 }
