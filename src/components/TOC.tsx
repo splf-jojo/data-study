@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
 type Heading = {
   id: string;
@@ -11,22 +11,22 @@ function slugify(text: string) {
   return text
     .toLowerCase()
     .trim()
-    .replace(/[^\w\u0400-\u04FF\s-]/g, '')
-    .replace(/\s+/g, '-');
+    .replace(/[^\w\u0400-\u04FF\s-]/g, "")
+    .replace(/\s+/g, "-");
 }
 
 export default function TOC() {
   const [headings, setHeadings] = useState<Heading[]>([]);
-  const [active, setActive] = useState<string>('');
+  const [active, setActive] = useState<string>("");
 
   // Сбор заголовков и отслеживание активного пункта
   useEffect(() => {
     const elements = Array.from(
-      document.querySelectorAll('main h2, main h3')
+      document.querySelectorAll("main h2, main h3")
     ) as HTMLElement[];
 
     const hs = elements.map((el) => {
-      const text = el.textContent || '';
+      const text = el.textContent || "";
       if (!el.id) {
         el.id = slugify(text);
       }
@@ -43,7 +43,7 @@ export default function TOC() {
           }
         });
       },
-      { rootMargin: '0px 0px -70% 0px' }
+      { rootMargin: "0px 0px -70% 0px" }
     );
 
     elements.forEach((el) => observer.observe(el));
@@ -60,7 +60,9 @@ export default function TOC() {
           <li key={h.id} className="relative">
             <a
               href={`#${h.id}`}
-              className={`${active === h.id ? 'font-bold' : ''} block hover:underline`}
+              className={`${
+                active === h.id ? "font-bold" : ""
+              } block hover:underline`}
             >
               {h.text}
             </a>
@@ -73,4 +75,3 @@ export default function TOC() {
     </aside>
   );
 }
-
