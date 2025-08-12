@@ -63,24 +63,6 @@ export default function CodeBlock({
           />
         </pre>
       </div>
-
-      <div className="absolute top-2 right-2 flex gap-2">
-        <button
-          onClick={copy}
-          className="btn inline-flex rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-semibold hover:-translate-y-px transition"
-        >
-          Скопировать
-        </button>
-        {expandable && (
-          <button
-            onClick={() => setExpanded((v) => !v)}
-            className="btn inline-flex rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-semibold hover:-translate-y-px transition"
-            aria-expanded={expanded}
-          >
-            {expanded ? "Свернуть" : "Развернуть"}
-          </button>
-        )}
-      </div>
     </div>
   );
 }

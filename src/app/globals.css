@@ -1,5 +1,6 @@
 /* app/globals.css */
 @import "tailwindcss";
+@import "prism-themes/themes/prism-vsc-dark-plus.css";
 
 /* Базовые донастройки — всё остальное через utility-классы */
 :root {

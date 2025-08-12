@@ -2,10 +2,9 @@
 import Header from "@/components/Header";
 import CodeBlock from "@/components/CodeBlock";
 import ExplainRow from "@/components/ExplainRow";
-import GridHW from "@/components/illustrations/GridHW";
-import PaddingStride from "@/components/illustrations/PaddingStride";
-import ToMatrix from "@/components/illustrations/ToMatrix";
-import { IM2COL_FULL, STEP1, STEP2, STEP3 } from "@/lib/code/im2col";
+import LoopVideo from "@/components/illustrations/LoopVideo";
+
+import { IM2COL_FULL, STEP4, STEP1, STEP2, STEP3 } from "@/lib/code/im2col";
 
 export default function Page() {
   return (
@@ -29,51 +28,73 @@ export default function Page() {
               code={IM2COL_FULL}
               expandable
             />
-
-            <p className="text-sm text-slate-500 mt-2">
-              Подсветка — VSCode Light+ (Prism). Шрифт кода — Fira Code.
-            </p>
           </div>
         </section>
 
         {/* ПОЯСНЕНИЯ */}
         <section
           id="explain"
-          className="max-w-[1100px] mx-auto px-4 py-8 space-y-7"
+          className="max-w-[1300px] mx-auto px-4 py-8 space-y-12"
         >
           <div className="h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
 
           <ExplainRow
             caption="Шаг 1 — Параметры и размеры выхода"
             code={STEP1}
-            right={<GridHW />}
+            right={
+              <LoopVideo
+                src="/videos/ScalarRowMatrixWH_v10.mp4"
+                poster="/videos/ScalarRowMatrixWH_v10.png"
+                // кастомный размер/обёртка через tailwind:
+                className="rounded-2xl border border-slate-200 shadow-md overflow-hidden aspect-video bg-black"
+              />
+            }
           />
-
           <div className="h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
 
           <ExplainRow
-            caption="Шаг 2 — Паддинг и буфер cols"
+            caption="Шаг 2 — Параметры и размеры выхода"
             code={STEP2}
-            right={<PaddingStride />}
+            right={
+              <LoopVideo
+                src="/videos/HelloManim.mp4"
+                poster="/videos/HelloManim.png"
+                // кастомный размер/обёртка через tailwind:
+                className="rounded-2xl border border-slate-200 shadow-md overflow-hidden aspect-video bg-black"
+              />
+            }
+          />
+          <div className="h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
+
+          <ExplainRow
+            caption="Шаг 3 — Паддинг и буфер cols"
+            code={STEP3}
+            right={
+              <LoopVideo
+                src="/videos/demo.mp4"
+                poster="/videos/image.png"
+                // кастомный размер/обёртка через tailwind:
+                className="rounded-2xl border border-slate-200 shadow-md overflow-hidden aspect-video bg-black"
+              />
+            }
           />
 
           <div className="h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
 
           <ExplainRow
-            caption="Шаг 3 — Из тензора в матрицу для GEMM"
-            code={STEP3}
-            right={<ToMatrix />}
+            caption="Шаг 4 — Из тензора в матрицу для GEMM"
+            code={STEP4}
+            right={
+              <LoopVideo
+                src="/videos/cols_reshape.mp4"
+                poster="/videos/cols_reshape.png"
+                // кастомный размер/обёртка через tailwind:
+                className="rounded-2xl border border-slate-200 shadow-md overflow-hidden aspect-video bg-black"
+              />
+            }
           />
-
-          <div className="h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
         </section>
       </main>
-
-      <footer className="border-t border-slate-200 mt-6">
-        <div className="max-w-[1100px] mx-auto px-4 py-6 text-center text-sm text-slate-500">
-          Сделано с любовью к понятному коду · Fira Code · Prism VSCode Light+
-        </div>
-      </footer>
     </>
   );
 }

@@ -4,7 +4,6 @@ import type { Metadata } from "next";
 import { Inter, Fira_Code } from "next/font/google";
 
 // Глобальная тема Prism (VSCode Light+) — импортим здесь, чтобы Next не ругался на global CSS
-import "prism-themes/themes/prism-vsc-light-plus.css";
 
 const inter = Inter({
   subsets: ["latin"],
