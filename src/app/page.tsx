@@ -1,5 +1,5 @@
 // app/page.tsx
-import Header from "@/components/Header";
+import DocPage from "@/components/DocPage";
 import CodeBlock from "@/components/CodeBlock";
 import ExplainRow from "@/components/ExplainRow";
 import LoopVideo from "@/components/illustrations/LoopVideo";
@@ -9,8 +9,7 @@ import { IM2COL_FULL, STEP4, STEP1, STEP2, STEP3 } from "@/lib/code/im2col";
 
 export default function Page() {
   return (
-    <>
-      <Header />
+    <DocPage slug="im2col">
       <div className="flex justify-center relative lg:px-8">
         <main className="max-w-[1100px] w-full px-4">
           {/* HERO */}
@@ -101,6 +100,6 @@ export default function Page() {
           <TOC />
         </div>
       </div>
-    </>
+    </DocPage>
   );
 }
