@@ -18,8 +18,25 @@ function slugify(text: string) {
 export default function TOC() {
   const [headings, setHeadings] = useState<Heading[]>([]);
   const [active, setActive] = useState<string>('');
+  const [isLarge, setIsLarge] = useState(false);
 
+  // Track viewport width to hide TOC on small screens
   useEffect(() => {
+    const mql = window.matchMedia('(min-width: 1024px)');
+    const handle = (e: MediaQueryListEvent | MediaQueryList) => {
+      // MediaQueryListEvent for addEventListener, MediaQueryList for initial call
+      setIsLarge(e.matches);
+    };
+    handle(mql);
+    mql.addEventListener('change', handle);
+    return () => mql.removeEventListener('change', handle);
+  }, []);
+
+  // Gather headings and observe active section only on large screens
+  useEffect(() => {
+    if (!isLarge) return;
+
+
     const elements = Array.from(
       document.querySelectorAll('main h2, main h3')
     ) as HTMLElement[];
@@ -47,12 +64,13 @@ export default function TOC() {
 
     elements.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
-  }, []);
+  }, [isLarge]);
 
-  if (headings.length === 0) return null;
+  if (!isLarge || headings.length === 0) return null;
 
   return (
-    <aside className="hidden lg:block fixed top-32 right-8 w-48 text-sm">
+    <aside className="fixed top-32 right-8 w-48 text-sm">
+
       <div className="mb-2 text-xs text-slate-500">On this page</div>
       <ul className="relative border-s border-slate-200 ps-4 space-y-2">
         {headings.map((h) => (
@@ -64,7 +82,8 @@ export default function TOC() {
               {h.text}
             </a>
             {active === h.id && (
-              <span className="absolute left-[-1px] top-1/2 h-3/4 w-px -translate-y-1/2 bg-slate-700" />
+              <span className="absolute -left-4 top-1/2 h-3/4 w-px -translate-y-1/2 bg-slate-700" />
+
             )}
           </li>
         ))}
